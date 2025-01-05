@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 class Ex6_Throw
 {
@@ -13,13 +14,17 @@ class Ex6_Throw
                     throw new NullPointerException();
                 else 
                 {
-                    System.out.print("Valid Input");
+                    System.out.println("Valid Input");
                     break;
                 }
             }
             catch(NullPointerException e)
             {
                 System.out.println("Invalid input no. must be greater then equals to 10");
+            }
+            catch(InputMismatchException e)
+            {
+                System.out.println("Input Mismatch");
             }
         }
 
