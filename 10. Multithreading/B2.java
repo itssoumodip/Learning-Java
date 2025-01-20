@@ -8,7 +8,7 @@ class B1 implements Runnable
             {
                 Thread.sleep(2000);
             }
-            catch (InterruptedException e) {System.out.println("HI");}
+            catch (InterruptedException e) {}
             System.out.println("Run Method " + i);
         }
     }
