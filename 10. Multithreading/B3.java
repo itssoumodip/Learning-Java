@@ -6,7 +6,7 @@ class B2 implements Runnable
         {
             try 
             {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             }
             catch (InterruptedException e){}
             System.out.println("Run Method "+i);
@@ -24,7 +24,7 @@ class B3
         {
             try
             {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             }
             catch (InterruptedException e) {}
             System.out.println("Main Executed "+i);
