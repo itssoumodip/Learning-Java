@@ -28,7 +28,8 @@ public class calc
         ob1.len = ob.nextInt(); 
         System.out.print("Enter the Breadth of Rect. : ");
         ob2.br = ob.nextInt();
-        calc ob2 = new Calc (ob1.len, ob1.br); // Parameterzied Constractor Calling
-        
+        calc ob2 = new calc (ob1.len, ob1.br); // Parameterzied Constractor Calling
+        calc ob3 = new calc (ob); //copy constractor calling
+        calc ob4 = new calc (ob2); //Once again copy constactor calling
     }
 }
