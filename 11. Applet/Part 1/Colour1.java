@@ -21,6 +21,7 @@ public class Colour1 extends Applet implements ActionListener
         add(obT2);
         add(obT3);
         add(obB);
+        obB.addActionListener(this);
     }
     public void actionPerformed (ActionEvent e)
     {
@@ -31,6 +32,15 @@ public class Colour1 extends Applet implements ActionListener
         int x = Integer.parseInt(obT1.getText());
         int y = Integer.parseInt(obT2.getText());
         int z = Integer.parseInt(obT3.getText());
-        if (x>255 || y>255 || z>255 || x<0 || y<0 ||)
+        if (x>255 || y>255 || z>255 || x<0 || y<0 || z<0)
+        { 
+            g.drawString("Invalid Colour Code !!", 50, 200);
+            System.out.println("Invalid Colour Code !!");
+        }
+        else 
+        {
+            Color obC = new Color(x, y, z);
+            setBackground(obC);   
+        }
     }
 }
