@@ -1,9 +1,10 @@
 import java.applet.*;
 import java.awt.*;
 
-//<applet code=dataSheet height=400 width=400></applet>
+//<applet code = dataSheet height = 400 width = 400></applet>
 
 public class dataSheet extends Applet {
+
     Label l1, l2, l3, l4, l5, l6, l7;
     TextField t1, t2, t3, t4, t5, t6, t7;
 
