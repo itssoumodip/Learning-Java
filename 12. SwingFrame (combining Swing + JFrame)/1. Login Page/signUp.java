@@ -166,6 +166,11 @@ public class signUp extends javax.swing.JFrame {
 
     private void b2ActionPerformed(java.awt.event.ActionEvent evt) {                                   
         // TODO add your handling code here:
+        t1.setText("");
+        t2.setText("");
+        t3.setText("");
+        p1.setText("");
+        p2.setText("");
     }                                  
 
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
@@ -175,21 +180,41 @@ public class signUp extends javax.swing.JFrame {
             id = Integer.parseInt(t1.getText());
             nm = t2.getText();
             phNo = t3.getText();
-            pass = t4.getText();
-            rePass = t5.getText();
+            pass = p1.getText();
+            rePass = p2.getText();
             if (pass.equals(rePass)) 
             {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 con=DriverManager.getConnection("jdbc:mysql://localhost:3306/signup?useSSL=false","root","yoursoumodip14");
-                String query = "insert into userData values('"+id+"', '"+nm"', '"+phNo+"', '"+pass+"')";
+                String query = "insert into userData values('"+id+"', '"+nm+"', '"+phNo+"', '"+pass+"')";
                 pst=this.con.prepareStatement(query);
                 int x = pst.executeUpdate();
                 if(x==1) {
                     JOptionPane.showMessageDialog(rootPane, "Inserted Sucessfully !!");
+                    t1.setText("");
+                    t2.setText("");
+                    t3.setText("");
+                    p1.setText("");
+                    p2.setText("");
                 }
+            }
+            else {
+                JOptionPane.showMessageDialog(rootPane, "Password Mismatched !!");
+                t1.setText("");
+                t2.setText("");
+                t3.setText("");
+                p1.setText("");
+                p2.setText("");                
             }
         }
         catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Insertion UnSucessfull !!");
+            t1.setText("");
+            t2.setText("");
+            t3.setText("");
+            p1.setText("");
+            p2.setText("");
+            
             
         }
     }                                  
