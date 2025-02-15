@@ -196,6 +196,9 @@ public class signUp extends javax.swing.JFrame {
                     t3.setText("");
                     p1.setText("");
                     p2.setText("");
+                    this.hide();
+                    Login obL = new Login(nm);
+                        obL.show();  
                 }
             }
             else {
@@ -214,8 +217,6 @@ public class signUp extends javax.swing.JFrame {
             t3.setText("");
             p1.setText("");
             p2.setText("");
-            
-            
         }
     }                                  
 
