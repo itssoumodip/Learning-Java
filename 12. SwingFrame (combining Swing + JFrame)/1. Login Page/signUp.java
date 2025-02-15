@@ -10,7 +10,8 @@ import java.sql.*;
  * @author Soumodip Das
  */
 public class signUp extends javax.swing.JFrame {
-
+    Connection con;
+    PreparedStatement pst;
     /**
      * Creates new form signUp
      */
@@ -168,19 +169,24 @@ public class signUp extends javax.swing.JFrame {
     }                                  
 
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
-        // TODO add your handling code here:
         try {
             int id;
             String nm, phNo, pass, rePass;
             id = Integer.parseInt(t1.getText());
             nm = t2.getText();
-            phno = t3.getText();
+            phNo = t3.getText();
             pass = t4.getText();
             rePass = t5.getText();
-            if (pass.equals(repass) {
+            if (pass.equals(rePass)) 
+            {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 con=DriverManager.getConnection("jdbc:mysql://localhost:3306/signup?useSSL=false","root","yoursoumodip14");
-                String query = 
+                String query = "insert into userData values('"+id+"', '"+nm"', '"+phNo+"', '"+pass+"')";
+                pst=this.con.prepareStatement(query);
+                int x = pst.executeUpdate();
+                if(x==1) {
+                    JOptionPane.showMessageDialog(rootPane, "Inserted Sucessfully !!");
+                }
             }
         }
         catch (Exception e) {
