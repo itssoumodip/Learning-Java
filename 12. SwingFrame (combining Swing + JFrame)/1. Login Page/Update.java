@@ -5,8 +5,11 @@
 package javaapplication01;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,6 +19,9 @@ public class Update extends javax.swing.JFrame {
     Connection con;
     PreparedStatement pst;
     ResultSet rst;
+    Statement stmt;
+    int id;
+    String pass, name, phNo;
     /**
      * Creates new form Update
      */
@@ -36,11 +42,12 @@ public class Update extends javax.swing.JFrame {
         t2 = new javax.swing.JTextField();
         t3 = new javax.swing.JTextField();
         b1 = new javax.swing.JButton();
-        p1 = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        b2 = new javax.swing.JButton();
+        t4 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,81 +73,96 @@ public class Update extends javax.swing.JFrame {
         });
 
         b1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        b1.setText("Update");
+        b1.setText("Show");
         b1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 b1ActionPerformed(evt);
             }
         });
 
-        p1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Enter the ID : ");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setText("Enter the User Name :");
+        jLabel2.setText("User Name :");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setText("Enter the Phone No. :");
+        jLabel3.setText("Phone No. :");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel4.setText("Enter the Passwiord :");
+        jLabel4.setText("Passwiord :");
+
+        b2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        b2.setText("Update");
+        b2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b2ActionPerformed(evt);
+            }
+        });
+
+        t4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        t4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(p1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(t3, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(12, 12, 12)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(t2)
-                                        .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addComponent(b2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(125, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(t3)
+                            .addComponent(t2)
+                            .addComponent(t4))
+                        .addGap(102, 102, 102))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(b1)
+                .addGap(0, 134, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(t1)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(b1))
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(t2)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(t3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(p1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(95, 95, 95))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t4))
+                        .addGap(42, 42, 42)))
+                .addComponent(b2)
+                .addGap(51, 51, 51))
         );
 
         pack();
@@ -148,34 +170,6 @@ public class Update extends javax.swing.JFrame {
 
     private void t1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
         // TODO add your handling code here:
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:306/signup?useSSL=false","root","yoursoumodip14");
-            int id;
-            id = Integer.parseInt(t1.getText());
-            String query = "select * from userData where userId='"+id+"';
-            String nm, pass, phno;
-            while ()
-            stmt=this.con.createStatement();
-            rst = stmt.executeQuery(query); 
-            if(rst.next()) {
-                JOptionPane.showConfirmDialog(rootPane, "Login Sucessful !!");
-                t1.setText("");
-                p1.setText("");
-                Home obHome = new Home(nm);
-                this.hide();
-                obHome.show();
-            }
-            else {
-                JOptionPane.showMessageDialog(rootPane, "Username or Password is Incorect !!");
-                p1.setText("");
-            }
-        }
-        catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Connection Error !!"+e);
-            t1.setText("");
-            p1.setText("");
-        }         
     }                                  
 
     private void t2ActionPerformed(java.awt.event.ActionEvent evt) {                                   
@@ -188,46 +182,58 @@ public class Update extends javax.swing.JFrame {
 
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
         try {
-            int id;
-            String nm, phNo, pass, rePass;
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/signup?useSSL=false","root","yoursoumodip14");
             id = Integer.parseInt(t1.getText());
-            nm = t2.getText();
-            phNo = t3.getText();
-            pass = p1.getText();
-            rePass = p2.getText();
-            if (pass.equals(rePass))
-            {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                con=DriverManager.getConnection("jdbc:mysql://localhost:3306/signup?useSSL=false","root","yoursoumodip14");
-                String query = "insert into userData values('"+id+"', '"+nm+"', '"+phNo+"', '"+pass+"')";
-                pst=this.con.prepareStatement(query);
-                int x = pst.executeUpdate();
-                if(x==1) {
-                    JOptionPane.showMessageDialog(rootPane, "Inserted Sucessfully !!");
-                    t1.setText("");
-                    t2.setText("");
-                    t3.setText("");
-                    p1.setText("");
-                    p2.setText("");
-                }
+            String query = "select * from userData where userId='"+id+"'";
+            stmt=this.con.createStatement();
+            rst = stmt.executeQuery(query);
+            while (rst.next()){
+                name = rst.getString("userName");
+                phNo = rst.getString("userPhoneNo");
+                pass = rst.getString("userPassword");
             }
-            else {
-                JOptionPane.showMessageDialog(rootPane, "Password Mismatched !!");
-                t1.setText("");
-                t2.setText("");
-                t3.setText("");
-                p1.setText("");
-                p2.setText("");
-            }
+            t2.setText(name);
+            t3.setText(phNo);
+            t4.setText(pass);
         }
         catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Insertion UnSucessfull !!");
-            t1.setText("");
-            t2.setText("");
-            t3.setText("");
-            p1.setText("");
-            p2.setText("");
+            JOptionPane.showConfirmDialog(rootPane, "Connection Error !!"+e);
+            t4.setText("");        
         }
+    }                                  
+
+    private void b2ActionPerformed(java.awt.event.ActionEvent evt) {                                   
+        // TODO add your handling code here:
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/signup?useSSL=false","root","yoursoumodip14");
+            name = t2.getText();
+            phNo = t3.getText();
+            pass = t4.getText();
+            String query = "update userData set userName='"+name+"', userPhoneNo='"+phNo+"', userPassword='"+pass+"' where userId='"+id+"'";
+            pst=this.con.prepareStatement(query);
+            int x = pst.executeUpdate();
+            if (x==1){
+                JOptionPane.showConfirmDialog(rootPane, "Updated Sucessfully !!");
+                t2.setText("");
+                t3.setText("");
+                t4.setText("");
+            }
+            else {
+                JOptionPane.showConfirmDialog(rootPane, "Update Unsucessfull !!");
+                t4.setText("");           
+            }
+        }
+        catch(Exception e) {
+            JOptionPane.showConfirmDialog(rootPane, "Connection Error !!"+e);
+            t4.setText("");
+        }
+        
+    }                                  
+
+    private void t4ActionPerformed(java.awt.event.ActionEvent evt) {                                   
+        // TODO add your handling code here:
     }                                  
 
     /**
@@ -267,13 +273,14 @@ public class Update extends javax.swing.JFrame {
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton b1;
+    private javax.swing.JButton b2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField p1;
     private javax.swing.JTextField t1;
     private javax.swing.JTextField t2;
     private javax.swing.JTextField t3;
+    private javax.swing.JTextField t4;
     // End of variables declaration                   
 }
