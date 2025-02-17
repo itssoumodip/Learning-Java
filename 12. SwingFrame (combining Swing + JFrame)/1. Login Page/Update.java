@@ -4,12 +4,18 @@
  */
 package javaapplication01;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author Soumodip Das
  */
 public class Update extends javax.swing.JFrame {
-
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rst;
     /**
      * Creates new form Update
      */
@@ -108,7 +114,7 @@ public class Update extends javax.swing.JFrame {
                                         .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(145, 145, 145)
-                        .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(125, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -133,8 +139,8 @@ public class Update extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
+                .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86))
         );
 
         pack();
@@ -142,6 +148,34 @@ public class Update extends javax.swing.JFrame {
 
     private void t1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
         // TODO add your handling code here:
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:306/signup?useSSL=false","root","yoursoumodip14");
+            int id;
+            id = Integer.parseInt(t1.getText());
+            String query = "select * from userData where userId='"+id+"';
+            String nm, pass, phno;
+            while ()
+            stmt=this.con.createStatement();
+            rst = stmt.executeQuery(query); 
+            if(rst.next()) {
+                JOptionPane.showConfirmDialog(rootPane, "Login Sucessful !!");
+                t1.setText("");
+                p1.setText("");
+                Home obHome = new Home(nm);
+                this.hide();
+                obHome.show();
+            }
+            else {
+                JOptionPane.showMessageDialog(rootPane, "Username or Password is Incorect !!");
+                p1.setText("");
+            }
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Connection Error !!"+e);
+            t1.setText("");
+            p1.setText("");
+        }         
     }                                  
 
     private void t2ActionPerformed(java.awt.event.ActionEvent evt) {                                   
