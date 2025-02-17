@@ -3,21 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package javaapplication01;
-
+import javax.swing.*;
+import java.sql.*;
 /**
  *
  * @author Soumodip Das
  */
 public class Login extends javax.swing.JFrame {
-
+    Connection con;
+    Statement stmt;
+    ResultSet rst;
     /**
      * Creates new form Login
-     */
-    public Login(String usName) {
+    */
+    public Login() {
         initComponents();
-        l1.setText("Welcome " + usName + " !!!");
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,31 +28,139 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        l1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        t1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        p1 = new javax.swing.JPasswordField();
+        b1 = new javax.swing.JButton();
+        b2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        l1.setFont(new java.awt.Font("Leelawadee UI", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setText("Enter the User Name :");
+
+        t1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        t1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t1ActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel4.setText("Enter the Passwiord :");
+
+        p1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        p1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                p1ActionPerformed(evt);
+            }
+        });
+
+        b1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        b1.setText("Login");
+        b1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b1ActionPerformed(evt);
+            }
+        });
+
+        b2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        b2.setText("Clear");
+        b2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(l1, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
-                .addGap(39, 39, 39))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(t1, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
+                            .addComponent(p1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(b2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(l1, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                .addGap(246, 246, 246))
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(t1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(p1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(5, 5, 5)))
+                .addGap(62, 62, 62)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(b2)
+                    .addComponent(b1))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>                        
+
+    private void t1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
+        // TODO add your handling code here:
+    }                                  
+
+    private void b1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/signup?useSSL=false","root","yoursoumodip14");
+            String nm, pass;
+            nm = t1.getText();
+            pass = p1.getText();
+            String query = "select userName, userPassword from userData where userName='"+nm+"' and userPassword='"+pass+"'" ;
+            stmt=this.con.createStatement();
+            rst = stmt.executeQuery(query); 
+            if(rst.next()) {
+                JOptionPane.showConfirmDialog(rootPane, "Login Sucessful !!");
+                t1.setText("");
+                p1.setText("");
+                Home obHome = new Home(nm);
+                this.hide();
+                obHome.show();
+            }
+            else {
+                JOptionPane.showMessageDialog(rootPane, "Username or Password is Incorect !!");
+                p1.setText("");
+            }
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Connection Error !!"+e);
+            t1.setText("");
+            p1.setText("");
+        }
+    }                                  
+
+    private void b2ActionPerformed(java.awt.event.ActionEvent evt) {                                   
+        // TODO add your handling code here:
+        t1.setText("");
+        p1.setText("");
+    }                                  
+
+    private void p1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
+        // TODO add your handling code here:
+    }                                  
 
     /**
      * @param args the command line arguments
@@ -89,6 +198,11 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify                     
-    private javax.swing.JLabel l1;
+    private javax.swing.JButton b1;
+    private javax.swing.JButton b2;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPasswordField p1;
+    private javax.swing.JTextField t1;
     // End of variables declaration                   
 }
