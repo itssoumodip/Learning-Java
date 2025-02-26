@@ -6,6 +6,7 @@ package javaapplication01;
 import javax.swing.*;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 /**
  *
  * @author Soumodip Das
@@ -36,7 +37,7 @@ public class UpdateUsingTable extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Table1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        p1 = new javax.swing.JPasswordField();
+        t4 = new javax.swing.JPasswordField();
         t3 = new javax.swing.JTextField();
         t2 = new javax.swing.JTextField();
         t1 = new javax.swing.JTextField();
@@ -81,12 +82,17 @@ public class UpdateUsingTable extends javax.swing.JFrame {
                 "Id", "Name", "Phone No", "Password"
             }
         ));
+        Table1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Table1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Table1);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Enter the ID : ");
 
-        p1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        t4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
 
         t3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         t3.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +144,7 @@ public class UpdateUsingTable extends javax.swing.JFrame {
                                         .addComponent(t3))
                                     .addGroup(layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(p1, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(t4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -169,7 +175,7 @@ public class UpdateUsingTable extends javax.swing.JFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(p1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,6 +242,17 @@ public class UpdateUsingTable extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                  
 
+    private void Table1MouseClicked(java.awt.event.MouseEvent evt) {                                    
+        int rNo = Table1.getSelectedRow();
+        TableModel obT= (TableModel)Table1.getModel();
+        t1.setText(obT.getValueAt(rNo, 0).toString());
+        t2.setText(obT.getValueAt(rNo, 1).toString());
+        t3.setText(obT.getValueAt(rNo, 2).toString());
+        t4.setText(obT.getValueAt(rNo, 3).toString());
+        
+// TODO add your handling code here:
+    }                                   
+
     /**
      * @param args the command line arguments
      */
@@ -281,9 +298,9 @@ public class UpdateUsingTable extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPasswordField p1;
     private javax.swing.JTextField t1;
     private javax.swing.JTextField t2;
     private javax.swing.JTextField t3;
+    private javax.swing.JPasswordField t4;
     // End of variables declaration                   
 }
