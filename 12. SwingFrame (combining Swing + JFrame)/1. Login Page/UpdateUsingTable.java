@@ -75,10 +75,7 @@ public class UpdateUsingTable extends javax.swing.JFrame {
 
         Table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Id", "Name", "Phone No", "Password"
@@ -126,9 +123,10 @@ public class UpdateUsingTable extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,10 +151,7 @@ public class UpdateUsingTable extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(b3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(b2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(b1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(b1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(243, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -203,14 +198,15 @@ public class UpdateUsingTable extends javax.swing.JFrame {
             con=DriverManager.getConnection("jdbc:mysql://localhost:3306/signup?useSSL=false","root","yoursoumodip14");
             String sql = "select * from userData";
             stmt = this.con.createStatement();
-            rs=stmt.executeQuery(sql);
+            rs=stmt.executeQuery(sql); 
             String id, nm, phno, pwd;
-            while (rs.next()) {
-                  id=rs.getString("id");
-                  nm=rs.getString("nm");
-                  phno=rs.getString("phno");
-                  pwd=rs.getString("pwd");
-                  String a[]=(id,nm,phno,pwd);
+            while (rs.next()) 
+            {
+                  id=rs.getString("userId");
+                  nm=rs.getString("userName");
+                  phno=rs.getString("userPhoneNo");
+                  pwd=rs.getString("userPassword");
+                  String a[]={id,nm,phno,pwd};
                   DefaultTableModel ob = (DefaultTableModel)Table1.getModel();
                   ob.addRow(a);
             }
