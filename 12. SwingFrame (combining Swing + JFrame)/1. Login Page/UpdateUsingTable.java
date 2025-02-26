@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package javaapplication01;
+import com.mysql.cj.xdevapi.Table;
 import javax.swing.JOptionPane;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +17,8 @@ public class UpdateUsingTable extends javax.swing.JFrame {
     ResultSet rs;
     Statement stmt;
     PreparedStatement ps;
+    int count=0;
+    DefaultTableModel ob;
     /**
      * Creates new form UpdateUsingTable
      */
@@ -202,26 +205,7 @@ public class UpdateUsingTable extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/signup?useSSL=false","root","yoursoumodip14");
-            String sql = "select * from userData";
-            stmt = this.con.createStatement();
-            rs=stmt.executeQuery(sql); 
-            String id, nm, phno, pwd;
-            while (rs.next()) 
-            {
-                  id=rs.getString("userId");
-                  nm=rs.getString("userName");
-                  phno=rs.getString("userPhoneNo");
-                  pwd=rs.getString("userPassword");
-                  String a[]={id,nm,phno,pwd};
-                  DefaultTableModel ob = (DefaultTableModel)Table1.getModel();
-                  ob.addRow(a);
-            }
-        }
-        catch (Exception e) {
-        }
+       show1();
         // TODO add your handling code here:
     }                                  
 
@@ -238,6 +222,10 @@ public class UpdateUsingTable extends javax.swing.JFrame {
             else {
                 JOptionPane.showMessageDialog(rootPane, "Updated Un-succesfull !!");
             }
+            ob=(DefaultTableModel)Table1.getModel();
+            ob.setRowCount(0);
+            count=0;
+            show1();
             
         }
         catch (Exception e) {
@@ -273,7 +261,32 @@ public class UpdateUsingTable extends javax.swing.JFrame {
         
 // TODO add your handling code here:
     }                                   
-
+    public void show1() {
+         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/signup?useSSL=false","root","yoursoumodip14");
+            count++;
+            if (count==1) {
+                String sql = "select * from userData";
+                stmt = this.con.createStatement();
+                rs=stmt.executeQuery(sql); 
+                String id, nm, phno, pwd;
+                while (rs.next()) 
+                {
+                    id=rs.getString("userId");
+                    nm=rs.getString("userName");
+                    phno=rs.getString("userPhoneNo");
+                    pwd=rs.getString("userPassword");
+                    String a[]={id,nm,phno,pwd};
+                    DefaultTableModel ob = (DefaultTableModel)Table1.getModel();
+                    ob.addRow(a);
+                }
+            }
+            
+        }
+        catch (Exception e) {
+        }
+    }
     /**
      * @param args the command line arguments
      */
