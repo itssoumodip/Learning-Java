@@ -3,18 +3,48 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package javaapplication2;
+import javax.swing.*;
+import java.sql.*;
+
+import java.io.File;
+import java.io.FileInputStream;
 
 /**
  *
  * @author Soumodip Das
  */
 public class img_input extends javax.swing.JFrame {
-
+    Statement stmt;
+    Connection con;
+    ResultSet rs;
+    File ob;
+    PreparedStatement pst;
+    int c = 0;
     /**
      * Creates new form img_input
      */
     public img_input() {
         initComponents();
+        try 
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/signup?useSSL=false","root","yoursoumodip14");            String query;
+            String sql;
+            sql = "select * from imginput";
+            stmt = this.con.createStatement();
+            rs=stmt.executeQuery(sql);
+            while(rs.next()) 
+            {
+                c++;
+            }
+            c++;
+            t1.setText(""+c);
+            t1.enable(false);
+            
+        }
+        catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, e);
+        }
     }
 
     /**
@@ -29,11 +59,11 @@ public class img_input extends javax.swing.JFrame {
         t1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        p1 = new javax.swing.JPasswordField();
         b1 = new javax.swing.JButton();
         b2 = new javax.swing.JButton();
-        p2 = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
+        t2 = new javax.swing.JTextField();
+        t3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,13 +79,6 @@ public class img_input extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Enter the User Name :");
-
-        p1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        p1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                p1ActionPerformed(evt);
-            }
-        });
 
         b1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         b1.setText("Browse");
@@ -73,15 +96,22 @@ public class img_input extends javax.swing.JFrame {
             }
         });
 
-        p2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        p2.addActionListener(new java.awt.event.ActionListener() {
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setText("Id : ");
+
+        t2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                p2ActionPerformed(evt);
+                t2ActionPerformed(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setText("Id : ");
+        t3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        t3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,21 +127,18 @@ public class img_input extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(p1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(p2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(90, 90, 90)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(t2, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                            .addComponent(t3))
+                        .addGap(36, 36, 36)
                         .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addContainerGap(284, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,19 +151,17 @@ public class img_input extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(p1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(p2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                            .addComponent(t2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(129, Short.MAX_VALUE))
+                            .addComponent(b1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(t3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(129, 129, 129))
         );
 
         pack();
@@ -146,47 +171,47 @@ public class img_input extends javax.swing.JFrame {
         // TODO add your handling code here:
     }                                  
 
-    private void p1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
-        // TODO add your handling code here:
-    }                                  
-
     private void b1ActionPerformed(java.awt.event.ActionEvent evt) {                                   
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/signup?useSSL=false","root","yoursoumodip14");
-            String nm, pass;
-            nm = t1.getText();
-            pass = p1.getText();
-            String query = "select userName, userPassword from userData where userName='"+nm+"' and userPassword='"+pass+"'" ;
-            stmt=this.con.createStatement();
-            rst = stmt.executeQuery(query);
-            if(rst.next()) {
-                JOptionPane.showConfirmDialog(rootPane, "Login Sucessful !!");
-                t1.setText("");
-                p1.setText("");
-                Home obHome = new Home(nm);
-                this.hide();
-                obHome.show();
-            }
-            else {
-                JOptionPane.showMessageDialog(rootPane, "Username or Password is Incorect !!");
-                p1.setText("");
-            }
-        }
-        catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, "Connection Error !!"+e);
-            t1.setText("");
-            p1.setText("");
-        }
+    JFileChooser obF = new JFileChooser();
+    int t=obF.showOpenDialog(null);
+    if (t==JFileChooser.APPROVE_OPTION)
+    {
+        ob = obF.getSelectedFile();
+        t3.setText(""+ob.getName());
+    }
+    
     }                                  
 
     private void b2ActionPerformed(java.awt.event.ActionEvent evt) {                                   
-        // TODO add your handling code here:
-        t1.setText("");
-        p1.setText("");
+        if (ob!=null) {
+            try (FileInputStream fs = new FileInputStream(ob)) 
+            {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                con=DriverManager.getConnection("jdbc:mysql://localhost:3306/signup?useSSL=false","root","yoursoumodip14");            String query;
+                String sql;
+                sql = "insert into imginput (id, name, img) values (?, ?, ?)";
+                pst = con.prepareStatement(sql);
+                pst.setString(1, t1.getText());
+                pst.setString(2, t2.getText());
+                pst.setBinaryStream(3, fs, (int)ob.length());
+                int p = pst.executeUpdate();
+                if (p==1) 
+                    JOptionPane.showMessageDialog(rootPane, "Inserted Sucesfully!!");
+                t1.setText("");
+                t2.setText("");
+                t3.setText("");
+            }
+            catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, e);
+            }
+        }
     }                                  
 
-    private void p2ActionPerformed(java.awt.event.ActionEvent evt) {                                   
+    private void t2ActionPerformed(java.awt.event.ActionEvent evt) {                                   
+        // TODO add your handling code here:
+    }                                  
+
+    private void t3ActionPerformed(java.awt.event.ActionEvent evt) {                                   
         // TODO add your handling code here:
     }                                  
 
@@ -231,8 +256,8 @@ public class img_input extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPasswordField p1;
-    private javax.swing.JPasswordField p2;
     private javax.swing.JTextField t1;
+    private javax.swing.JTextField t2;
+    private javax.swing.JTextField t3;
     // End of variables declaration                   
 }
